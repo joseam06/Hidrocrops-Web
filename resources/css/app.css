@@ -1,0 +1,32 @@
+body {
+    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+}
+
+.bg-green-600 {
+    background-color: #059669;
+}
+
+.hover\:underline:hover {
+    text-decoration: underline;
+}
+
+
+/* Transición suave para el menú desplegable */
+
+[x-cloak] {
+    display: none !important;
+}
+
+
+/* Animación para el menú desplegable */
+
+.dropdown-enter-active,
+.dropdown-leave-active {
+    transition: all 150ms ease;
+}
+
+.dropdown-enter-from,
+.dropdown-leave-to {
+    opacity: 0;
+    transform: translateY(-10px);
+}
