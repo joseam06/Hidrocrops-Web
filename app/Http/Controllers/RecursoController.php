@@ -17,10 +17,10 @@ class RecursoController extends Controller
 public function store(Request $request, $moduleId)
 {
     $request->validate([
-        'titulo' => 'required|string|max:255',
+        'titulo' => 'required|string|max:300',
         'descripcion' => 'nullable|string',
         'tipo' => 'required|in:pdf,video,podcast,imagen',
-        'archivo' => 'required|file|mimes:pdf,mp3,mp4,webm,jpg,jpeg,png,gif|max:20480',
+        'archivo' => 'required|file|mimes:pdf,mp3,mp4,webm,jpg,jpeg,png,gif|max:204800',
     ]);
 
     // Generar nombre único y mover archivo

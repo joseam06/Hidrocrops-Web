@@ -89,9 +89,10 @@
     <div class="mt-8 p-4 bg-green-100 rounded shadow">
         <h2 class="text-xl font-semibold text-green-800 mb-2">Evaluación disponible</h2>
         <p class="mb-4">{{ $module->evaluacion->titulo }}</p>
-        <a href="#" class="inline-block bg-green-600 text-white px-4 py-2 rounded hover:bg-green-700">
-            Realizar evaluación
+        <a href="{{ route('modules.evaluacion', $module->id) }}" class="inline-block bg-green-600 text-white px-4 py-2 rounded hover:bg-green-700">
+        Realizar evaluación
         </a>
+
     </div>
 @endif
 

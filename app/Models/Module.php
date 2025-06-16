@@ -22,5 +22,10 @@ class Module extends Model
     {
         return $this->hasOne(Evaluacion::class);
     }
+    public function evaluaciones()
+{
+    return $this->hasMany(Evaluacion::class);
+}
+
 
 }

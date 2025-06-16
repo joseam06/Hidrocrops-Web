@@ -3,29 +3,25 @@
 @section('content')
 <div class="bg-white rounded-lg shadow p-6">
     <h1 class="text-2xl font-bold mb-6">Evaluaciones</h1>
-    
-    <div class="space-y-4">
-        <div class="border-b pb-4">
+
+    @forelse($evaluaciones as $eval)
+        <div class="border-b pb-4 mb-4">
             <div class="flex items-center">
-                <input type="checkbox" class="mr-2" disabled>
-                <h3 class="font-bold">Introducción a la hidroponía</h3>
+                <input type="checkbox" class="mr-2" disabled {{ in_array($eval->id, $completadas) ? 'checked' : '' }}>
+                <a href="{{ route('modules.evaluacion', $eval->module->id) }}" class="text-green-700 font-bold hover:underline">
+                    {{ $eval->titulo }}
+                </a>
+
             </div>
-            <p class="text-gray-600 ml-6">Completada</p>
+            <p class="text-gray-600 ml-6">
+                Módulo: <span class="font-medium">{{ $eval->module->titulo ?? 'Sin módulo' }}</span>
+            </p>
+            <p class="text-sm ml-6 mt-1 text-gray-500">
+                {{ in_array($eval->id, $completadas) ? 'Completada' : 'No completada' }}
+            </p>
         </div>
-        <div class="border-b pb-4">
-            <div class="flex items-center">
-                <input type="checkbox" class="mr-2" disabled>
-                <h3 class="font-bold">Soluciones nutritivas</h3>
-            </div>
-            <p class="text-gray-600 ml-6">No completada</p>
-        </div>
-        <div class="border-b pb-4">
-            <div class="flex items-center">
-                <input type="checkbox" class="mr-2" disabled>
-                <h3 class="font-bold">Clima e iluminación</h3>
-            </div>
-            <p class="text-gray-600 ml-6">No completada</p>
-        </div>
-    </div>
+    @empty
+        <p class="text-gray-500">Aún no hay evaluaciones disponibles.</p>
+    @endforelse
 </div>
 @endsection
