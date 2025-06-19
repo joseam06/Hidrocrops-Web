@@ -32,7 +32,7 @@
 
         <section id="como-funciona" class="my-16">
             <h3 class="text-4xl font-bold text-green-800">¿Cómo funciona Hidrocrops Web?</h3>
-            <p class="mt-2 max-w-2xl font-semibold mx-auto">Ofrecemos módulos interactivos, diagramas, y asesoría virtual para que aprendas desde casa.</p>
+            <p class="mt-2 max-w-2xl font-semibold mx-auto">Ofrecemos módulos interactivos, asesoría virtual para que aprendas desde casa, además de foros para que puedas resolver todas tus dudas con otros usuarios o directamente con el administrador.</p>
         <div class="mt-8 flex justify-center gap-6 flex-wrap">
             <img src="{{ asset('images/sishidro.jpg') }}" alt="Cultivo Hidropónico 2" class="w-80 h-auto rounded-lg shadow-md">
         </div>

@@ -53,7 +53,7 @@ public function store(Request $request, $moduleId)
         $request->validate([
             'titulo' => 'required|string|max:255',
             'descripcion' => 'nullable|string',
-            'archivo' => 'nullable|mimes:pdf,mp3,mp4,jpg,jpeg,png,gif|max:20480',
+            'archivo' => 'nullable|mimes:pdf,mp3,mp4,jpg,jpeg,png,gif|max:204800',
         ]);
 
         // Subir nuevo archivo si se proporciona

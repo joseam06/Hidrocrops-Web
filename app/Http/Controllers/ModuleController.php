@@ -65,9 +65,9 @@ public function evaluacion(Module $module)
         'titulo' => 'required|string|max:255',
         'descripcion' => 'nullable|string',
         'categoria' => 'nullable|string|max:100',
-        'podcast_archivo' => 'nullable|mimes:mp3|max:20480',
-        'video_archivo'   => 'nullable|mimes:mp4,webm|max:51200',
-        'pdf_archivo'     => 'nullable|mimes:pdf|max:20480',
+        'podcast_archivo' => 'nullable|mimes:mp3|max:102400',
+        'video_archivo'   => 'nullable|mimes:mp4,webm|max:204800',
+        'pdf_archivo'     => 'nullable|mimes:pdf|max:51200',
         'imagen_archivo'  => 'nullable|mimes:jpg,jpeg,png,gif|max:10240',
     ]);
 
