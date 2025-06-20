@@ -42,9 +42,11 @@ Route::middleware(['auth:sanctum', 'verified'])->group(function () {
     Route::get('/', [ModuleController::class, 'index'])->name('modules.index');
     Route::get('/{module}', [ModuleController::class, 'show'])->name('modules.show');
    
-    Route::get('/{module}/evaluacion', [ModuleController::class, 'evaluacion'])
-    ->name('modules.evaluacion');
-Route::post('/evaluaciones/completar', [EvaluacionUsuarioController::class, 'store'])->name('evaluaciones.completar');
+    Route::get('/{module}/evaluacion', [ModuleController::class, 'evaluacion'])->name('modules.evaluacion');
+   
+    Route::post('/{module}/evaluacion', [ModuleController::class, 'guardarEvaluacion'])
+    ->name('modules.evaluacion.guardar');
+    Route::post('/evaluaciones/completar', [EvaluacionUsuarioController::class, 'store'])->name('evaluaciones.completar');
 
 });
   // Redirecciones amigables para los módulos especiales

@@ -6,7 +6,9 @@ use App\Models\Module;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Str;
+use App\Models\EvaluacionUsuario;
 
+use Illuminate\Support\Facades\Session;
 
 class ModuleController extends Controller
 {
@@ -177,4 +179,52 @@ public function evaluacion(Module $module)
             abort(403, 'Acceso no autorizado');
         }
     }
+
+    public function guardarEvaluacion(Request $request, Module $module)
+{
+    $userId = Auth::id();
+    $evaluacion = $module->evaluacion;
+
+    if (!$evaluacion) {
+        abort(404, 'Evaluación no encontrada para este módulo.');
+    }
+
+    $request->validate([
+        'respuestas' => 'required|array',
+    ]);
+
+    $preguntas = json_decode($evaluacion->preguntas, true);
+    $respuestasUsuario = $request->input('respuestas');
+
+    $aciertos = 0;
+    $total = count($preguntas);
+
+    foreach ($preguntas as $index => $pregunta) {
+        $respuestaCorrecta = $pregunta['respuesta'] ?? null;
+        $respuestaUsuario = $respuestasUsuario[$index] ?? null;
+
+        if ($respuestaUsuario === $respuestaCorrecta) {
+            $aciertos++;
+        }
+    }
+
+    $porcentaje = $total > 0 ? ($aciertos / $total) * 100 : 0;
+
+    // Registrar evaluación si no está registrada
+    $yaRegistrada = EvaluacionUsuario::where('evaluacion_id', $evaluacion->id)
+        ->where('user_id', $userId)
+        ->exists();
+
+    if (!$yaRegistrada) {
+        EvaluacionUsuario::create([
+            'evaluacion_id' => $evaluacion->id,
+            'user_id' => $userId,
+            'completado' => true,
+        ]);
+    }
+
+    Session::flash('success', "¡Evaluación enviada! Obtuviste {$aciertos} de {$total} preguntas correctas ({$porcentaje}%).");
+
+    return redirect()->route('modules.show', $module->id);
+}
 }

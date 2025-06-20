@@ -4,7 +4,8 @@
 <div class="container mx-auto max-w-3xl py-10">
     <h1 class="text-2xl font-bold text-green-800 mb-6">{{ $module->evaluacion->titulo }}</h1>
 
-    <form method="POST" action="#">
+    <form method="POST" action="{{ route('modules.evaluacion.guardar', $module->id) }}">
+
         @csrf
 
         @foreach ($preguntas as $index => $pregunta)
@@ -13,7 +14,8 @@
 
                 @foreach ($pregunta['opciones'] as $opcion)
                     <label class="block mb-1">
-                        <input type="radio" name="respuestas[{{ $index }}]" value="{{ $opcion }}" class="mr-2" required>
+                        <input type="radio" name="respuestas[{{ $index }}]" value="{{ substr($opcion, 0, 1) }}" class="mr-2" required>
+
                         {{ $opcion }}
                     </label>
                 @endforeach

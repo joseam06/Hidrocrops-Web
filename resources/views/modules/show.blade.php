@@ -2,6 +2,13 @@
 
 @section('content')
 <div class="container mx-auto px-4 py-8 max-w-4xl">
+    
+    @if(session('success'))
+    <div class="bg-green-100 text-green-800 p-4 rounded mb-4">
+        {{ session('success') }}
+    </div>
+@endif
+
     <h1 class="text-3xl font-bold text-green-800 mb-4">{{ $module->titulo }}</h1>
 
     @auth
